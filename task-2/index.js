@@ -8,6 +8,14 @@
  * @returns {Boolean}
  */
 function haveSameItems(arr1, arr2) {
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+  for (let i = 0; i < arr1.length; i++) {
+    if (!arr2.some(number => number === arr1[i])) {
+      return false;
+    }
+  }
   return true;
 }
 
