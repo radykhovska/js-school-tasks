@@ -5,7 +5,7 @@ class Emitter {
    * @memberof Emitter
    */
   constructor() {
-    // Ваш код
+    this.handler = {};
   }
 
   /**
@@ -16,7 +16,10 @@ class Emitter {
    * @memberof Emitter
    */
   on(event, handler) {
-    // Ваш код
+    if (!(event in this.handler)) {
+        this.handler[event] = [];
+    }
+    this.handler[event].push(handler);
   }
 
   /**
@@ -28,7 +31,11 @@ class Emitter {
    * @memberof Emitter
    */
   emit(event, data) {
-    // Ваш код
+    if (event in this.handler) {
+      for (let i = 0; i < this.handler[event].length; i++) {
+        this.handler[event][i](data);
+      }
+    }
   }
 }
 
